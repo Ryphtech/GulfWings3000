@@ -1,0 +1,235 @@
+/* ===== Digital Reader ===== */
+
+.reader {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #08090f;
+}
+
+.reader--fullscreen {
+  padding-top: 0;
+}
+
+/* Toolbar */
+.reader-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--gw-navy-light);
+  border-bottom: 1px solid var(--gw-glass-border);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.reader-toolbar__left,
+.reader-toolbar__center,
+.reader-toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.reader-toolbar__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gw-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.reader-toolbar__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--gw-glass-border);
+  margin: 0 var(--space-xs);
+}
+
+.reader-toolbar__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--gw-text);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.reader-toolbar__btn:hover:not(:disabled) {
+  color: var(--gw-gold);
+  background: var(--gw-gold-dim);
+}
+
+.reader-toolbar__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.reader-toolbar__btn .material-symbols-outlined {
+  font-size: 22px;
+}
+
+.reader-toolbar__page-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--gw-text);
+}
+
+.reader-toolbar__page-input {
+  width: 44px;
+  padding: 4px 6px;
+  text-align: center;
+  background: var(--gw-navy);
+  border: 1px solid var(--gw-glass-border);
+  border-radius: 4px;
+  color: var(--gw-white);
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.reader-toolbar__page-input::-webkit-outer-spin-button,
+.reader-toolbar__page-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.reader-toolbar__page-input:focus {
+  border-color: var(--gw-gold);
+}
+
+.reader-toolbar__zoom-level {
+  font-size: 0.8rem;
+  color: var(--gw-text-muted);
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Viewport */
+.reader-viewport {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+  background: #08090f;
+}
+
+.reader-document {
+  display: flex;
+  justify-content: center;
+}
+
+.reader-page {
+  box-shadow: var(--shadow-lg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Loading */
+.reader-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: var(--space-4xl);
+  color: var(--gw-text-muted);
+}
+
+.reader-loading__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gw-navy-mid);
+  border-top-color: var(--gw-gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error */
+.reader-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-4xl);
+  text-align: center;
+  color: var(--gw-text-muted);
+}
+
+.reader-error h3 {
+  color: var(--gw-danger);
+}
+
+/* Mobile Toolbar */
+@media (max-width: 768px) {
+  .reader-toolbar {
+    flex-wrap: wrap;
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-xs);
+  }
+
+  .reader-toolbar__left {
+    order: 1;
+    flex: 1;
+  }
+
+  .reader-toolbar__right {
+    order: 2;
+  }
+
+  .reader-toolbar__center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--gw-glass-border);
+  }
+
+  .reader-toolbar__title {
+    display: none;
+  }
+
+  .reader-toolbar__divider {
+    display: none;
+  }
+}
+
+/* Not Found */
+.reader-not-found {
+  padding-top: var(--nav-height);
+}
+
+/* Fullscreen iframe layout */
+.reader-viewport--iframe {
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+.reader-iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: var(--gw-navy) !important;
+  flex: 1 !important;
+  align-self: stretch !important;
+}

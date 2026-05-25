@@ -1,0 +1,41 @@
+/* ===== Magazine Library ===== */
+
+/* Info Bar */
+.mag-library-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--gw-gold-dim);
+  border: 1px solid var(--gw-gold-border);
+  border-radius: var(--radius-sm);
+  color: var(--gw-gold);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-xl);
+}
+
+.mag-library-info .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* Empty State */
+.mag-library-empty {
+  text-align: center;
+  padding: var(--space-4xl) var(--space-xl);
+}
+
+.mag-library-empty__icon {
+  font-size: 72px;
+  color: var(--gw-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.mag-library-empty h3 {
+  margin-bottom: var(--space-md);
+}
+
+.mag-library-empty p {
+  color: var(--gw-text-muted);
+  max-width: 400px;
+  margin: 0 auto;
+}

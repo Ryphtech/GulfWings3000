@@ -1,0 +1,226 @@
+/* ===== About Us Page ===== */
+
+/* Hero */
+.about-hero {
+  position: relative;
+  padding: calc(var(--nav-height) + var(--space-4xl)) 0 var(--space-4xl);
+  text-align: center;
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.about-hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+
+.about-hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 14, 26, 0.5) 0%, var(--gw-navy) 100%);
+}
+
+.about-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero__title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin: var(--space-md) 0;
+}
+
+.about-hero__title .gold {
+  color: var(--gw-gold);
+}
+
+.about-hero__subtitle {
+  font-size: 1.1rem;
+  color: var(--gw-text);
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Content Grid */
+.about-content-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+.about-text h2 {
+  margin: var(--space-md) 0 var(--space-lg);
+}
+
+.about-text p {
+  color: var(--gw-text);
+  line-height: 1.8;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.about-value-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.about-value-chip:hover {
+  border-color: var(--gw-gold-border);
+  transform: translateY(-2px);
+}
+
+.about-value-chip .material-symbols-outlined {
+  font-size: 32px;
+  color: var(--gw-gold);
+}
+
+.about-value-chip span:last-child {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gw-cream);
+}
+
+@media (max-width: 768px) {
+  .about-content-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .about-values {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .about-values {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mission Cards */
+.mission-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.mission-card {
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.mission-card__icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gw-gold-dim);
+  border: 1px solid var(--gw-gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mission-card__icon-wrap .material-symbols-outlined {
+  font-size: 28px;
+  color: var(--gw-gold);
+}
+
+.mission-card h3 {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.mission-card p {
+  font-size: 0.9rem;
+  color: var(--gw-text-muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .mission-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+/* Coverage Grid */
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.coverage-item {
+  padding: var(--space-xl);
+  background: var(--gw-navy-surface);
+  border: 1px solid var(--gw-glass-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.coverage-item:hover {
+  border-color: var(--gw-gold-border);
+  transform: translateY(-2px);
+}
+
+.coverage-item__icon {
+  font-size: 28px;
+  color: var(--gw-gold);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.coverage-item h4 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gw-white);
+  margin-bottom: var(--space-sm);
+}
+
+.coverage-item p {
+  font-size: 0.85rem;
+  color: var(--gw-text-muted);
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+@media (max-width: 960px) {
+  .coverage-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .coverage-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,84 @@
+/* ===== Magazine Card ===== */
+
+.mag-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.mag-card__cover {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--gw-navy-mid);
+}
+
+.mag-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.mag-card:hover .mag-card__img {
+  transform: scale(1.05);
+}
+
+.mag-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gw-navy-mid), var(--gw-navy-surface));
+}
+
+.mag-card__placeholder .material-symbols-outlined {
+  font-size: 64px;
+  color: var(--gw-text-muted);
+}
+
+.mag-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.mag-card:hover .mag-card__overlay {
+  opacity: 1;
+}
+
+.mag-card__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.mag-card__title {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin-top: var(--space-xs);
+}
+
+.mag-card__desc {
+  font-size: 0.88rem;
+  color: var(--gw-text-muted);
+  line-height: 1.55;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mag-card__actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
