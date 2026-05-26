@@ -116,7 +116,7 @@ export default function HomePage() {
           {loading ? (
             <div className="magazine-grid">
               {[1, 2, 3].map((n) => (
-                <div key={n} className="magazine-card glass loading-shimmer" style={{ height: '380px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <div key={n} className="magazine-card glass loading-shimmer" style={{ height: '220px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                   <span className="material-symbols-outlined" style={{ fontSize: '48px', color: 'var(--gw-gold)', marginBottom: '10px' }}>menu_book</span>
                   <span style={{ color: 'var(--gw-text-muted)' }}>Loading edition...</span>
                 </div>

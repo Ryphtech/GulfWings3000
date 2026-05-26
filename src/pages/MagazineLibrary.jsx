@@ -56,7 +56,6 @@ export default function MagazineLibrary() {
               <div className="mag-library-info">
                 <span className="material-symbols-outlined">info</span>
                 Showing the latest {magazines.length} edition{magazines.length !== 1 ? 's' : ''}.
-                Older editions are automatically archived.
               </div>
               <div className="magazine-grid">
                 {magazines.map((mag, i) => (
