@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  flex-wrap: wrap;
   padding: var(--space-md) var(--space-lg);
   background: var(--gw-gold-dim);
   border: 1px solid var(--gw-gold-border);

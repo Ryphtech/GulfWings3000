@@ -16,6 +16,12 @@
   padding: var(--space-2xl);
 }
 
+@media (max-width: 480px) {
+  .admin-login-card {
+    padding: var(--space-lg);
+  }
+}
+
 .admin-login-card__header {
   text-align: center;
   margin-bottom: var(--space-xl);
@@ -167,6 +173,7 @@
 .admin-form-actions {
   display: flex;
   gap: var(--space-sm);
+  flex-wrap: wrap;
 }
 
 /* List */
@@ -292,6 +299,24 @@
   }
 
   .admin-tabs {
-    flex-direction: column;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 2px; /* Space for scrollbar/border */
+  }
+  
+  .admin-tab {
+    flex-shrink: 0;
+  }
+
+  .admin-list-item {
+    flex-wrap: wrap;
+  }
+
+  .admin-list-item__actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: var(--space-xs);
+    border-top: 1px solid var(--gw-glass-border);
+    padding-top: var(--space-sm);
   }
 }
