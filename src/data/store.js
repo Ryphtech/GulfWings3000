@@ -101,49 +101,8 @@ function translateEventKeys(dbEvent) {
 let seedingInProgress = false;
 
 export async function ensureSeeded() {
-  if (!supabase) return;
-  if (seedingInProgress) return;
-
-  try {
-    // Check if magazines table has any rows
-    const { count: magCount, error: magError } = await supabase
-      .from('magazines')
-      .select('*', { count: 'exact', head: true });
-
-    if (!magError && magCount === 0) {
-      seedingInProgress = true;
-      const dbSeedMags = SEED_MAGAZINES.map(m => ({
-        title: m.title,
-        description: m.description,
-        publish_date: m.publishDate,
-        pdf_url: m.pdfUrl,
-        cover_image: m.coverImage
-      }));
-      await supabase.from('magazines').insert(dbSeedMags);
-    }
-
-    // Check if events table has any rows
-    const { count: evtCount, error: evtError } = await supabase
-      .from('events')
-      .select('*', { count: 'exact', head: true });
-
-    if (!evtError && evtCount === 0) {
-      seedingInProgress = true;
-      const dbSeedEvts = SEED_EVENTS.map(e => ({
-        heading: e.heading,
-        details: e.details,
-        event_date: e.eventDate,
-        event_time: e.eventTime,
-        published_date: e.publishedDate,
-        whatsapp_number: e.whatsappNumber
-      }));
-      await supabase.from('events').insert(dbSeedEvts);
-    }
-  } catch (err) {
-    console.error('Dynamic Seeding Error:', err);
-  } finally {
-    seedingInProgress = false;
-  }
+  // Seeding disabled to prevent accidental duplicate inserts
+  return;
 }
 
 /* ---------- Magazine CRUD ---------- */

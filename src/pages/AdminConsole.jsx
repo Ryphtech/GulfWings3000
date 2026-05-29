@@ -426,11 +426,7 @@ export default function AdminConsole() {
                     {magazines.map((mag) => (
                       <div className="admin-list-item" key={mag.id}>
                         <div className="admin-list-item__thumb">
-                          {mag.coverImage ? (
-                            <img src={mag.coverImage} alt={mag.title} />
-                          ) : (
-                            <span className="material-symbols-outlined">menu_book</span>
-                          )}
+                          <span className="material-symbols-outlined">menu_book</span>
                         </div>
                         <div className="admin-list-item__info">
                           <h4>{mag.title}</h4>
