@@ -143,10 +143,6 @@
   .admin-panel-grid {
     grid-template-columns: 1fr;
   }
-  
-  .admin-form-card {
-    position: static;
-  }
 }
 
 /* Form Card */
@@ -154,6 +150,12 @@
   padding: var(--space-xl);
   position: sticky;
   top: calc(var(--nav-height) + var(--space-xl));
+}
+
+@media (max-width: 960px) {
+  .admin-form-card {
+    position: static;
+  }
 }
 
 .admin-form-card h3 {
