@@ -220,6 +220,30 @@ export async function addMagazine({ title, description, publishDate, pdfUrl, cov
   return translateMagazineKeys(data);
 }
 
+export async function editMagazine(id, updates) {
+  if (!supabase) return null;
+
+  const dbUpdates = {};
+  if (updates.title !== undefined) dbUpdates.title = updates.title;
+  if (updates.description !== undefined) dbUpdates.description = updates.description;
+  if (updates.publishDate !== undefined) dbUpdates.publish_date = updates.publishDate;
+  if (updates.pdfUrl !== undefined) dbUpdates.pdf_url = updates.pdfUrl;
+  if (updates.coverImage !== undefined) dbUpdates.cover_image = updates.coverImage;
+
+  const { data, error } = await supabase
+    .from('magazines')
+    .update(dbUpdates)
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Error updating magazine:', error);
+    throw error;
+  }
+  return translateMagazineKeys(data);
+}
+
 export async function deleteMagazine(id) {
   if (!supabase) return;
 

@@ -223,7 +223,7 @@
   border-right: 3px solid var(--gw-gold);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .navbar__links {
     display: none;
   }

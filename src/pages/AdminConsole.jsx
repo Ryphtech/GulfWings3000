@@ -5,6 +5,7 @@ import {
   adminLogout,
   getMagazines,
   addMagazine,
+  editMagazine,
   deleteMagazine,
   getEvents,
   addEvent,
@@ -53,8 +54,9 @@ export default function AdminConsole() {
   // Magazine state
   const [magazines, setMagazinesState] = useState([]);
   const [magForm, setMagForm] = useState({
-    title: '', description: '', publishDate: '', pdfUrl: '', coverImage: '',
+    title: '', description: '', publishDate: '', pdfUrl: '',
   });
+  const [editingMagazine, setEditingMagazine] = useState(null);
 
   // Event state
   const [events, setEventsState] = useState([]);
@@ -110,7 +112,7 @@ export default function AdminConsole() {
     setSubmitting(true);
     try {
       await addMagazine(magForm);
-      setMagForm({ title: '', description: '', publishDate: '', pdfUrl: '', coverImage: '' });
+      setMagForm({ title: '', description: '', publishDate: '', pdfUrl: '' });
       await refreshData();
       showToast('Magazine added successfully!');
     } catch (err) {
@@ -119,6 +121,42 @@ export default function AdminConsole() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handleEditMagazine = (mag) => {
+    setEditingMagazine(mag.id);
+    setMagForm({
+      title: mag.title,
+      description: mag.description,
+      publishDate: mag.publishDate,
+      pdfUrl: mag.pdfUrl,
+    });
+  };
+
+  const handleUpdateMagazine = async (e) => {
+    e.preventDefault();
+    if (!magForm.title || !magForm.publishDate || !magForm.pdfUrl) {
+      showToast('Please fill in title, publish date, and PDF URL.', 'error');
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await editMagazine(editingMagazine, magForm);
+      setEditingMagazine(null);
+      setMagForm({ title: '', description: '', publishDate: '', pdfUrl: '' });
+      await refreshData();
+      showToast('Magazine updated successfully!');
+    } catch (err) {
+      console.error(err);
+      showToast('Failed to update magazine.', 'error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleCancelEditMagazine = () => {
+    setEditingMagazine(null);
+    setMagForm({ title: '', description: '', publishDate: '', pdfUrl: '' });
   };
 
   const handleDeleteMagazine = async (id, title) => {
@@ -309,10 +347,12 @@ export default function AdminConsole() {
               {/* Add Magazine Form */}
               <div className="admin-form-card glass" id="admin-add-magazine">
                 <h3>
-                  <span className="material-symbols-outlined" style={{ color: 'var(--gw-gold)' }}>add_circle</span>
-                  Add New Magazine
+                  <span className="material-symbols-outlined" style={{ color: 'var(--gw-gold)' }}>
+                    {editingMagazine ? 'edit' : 'add_circle'}
+                  </span>
+                  {editingMagazine ? 'Edit Magazine' : 'Add New Magazine'}
                 </h3>
-                <form onSubmit={handleAddMagazine}>
+                <form onSubmit={editingMagazine ? handleUpdateMagazine : handleAddMagazine}>
                   <div className="form-group">
                     <label htmlFor="mag-title">Title *</label>
                     <input
@@ -355,21 +395,19 @@ export default function AdminConsole() {
                       onChange={(e) => setMagForm({ ...magForm, pdfUrl: e.target.value })}
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="mag-cover">Cover Image URL</label>
-                    <input
-                      type="url"
-                      id="mag-cover"
-                      className="form-input"
-                      placeholder="https://example.com/cover.jpg (optional)"
-                      value={magForm.coverImage}
-                      onChange={(e) => setMagForm({ ...magForm, coverImage: e.target.value })}
-                    />
+                  <div className="admin-form-actions">
+                    <button type="submit" className="btn btn-primary" id="admin-mag-submit" disabled={submitting}>
+                      <span className="material-symbols-outlined">
+                        {submitting ? 'hourglass_empty' : (editingMagazine ? 'save' : 'publish')}
+                      </span>
+                      {submitting ? 'Saving...' : (editingMagazine ? 'Update Magazine' : 'Publish Magazine')}
+                    </button>
+                    {editingMagazine && (
+                      <button type="button" className="btn btn-ghost" onClick={handleCancelEditMagazine} disabled={submitting}>
+                        Cancel
+                      </button>
+                    )}
                   </div>
-                  <button type="submit" className="btn btn-primary" id="admin-mag-submit" disabled={submitting}>
-                    <span className="material-symbols-outlined">{submitting ? 'hourglass_empty' : 'publish'}</span>
-                    {submitting ? 'Publishing...' : 'Publish Magazine'}
-                  </button>
                 </form>
               </div>
 
@@ -402,13 +440,23 @@ export default function AdminConsole() {
                             })}
                           </span>
                         </div>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => handleDeleteMagazine(mag.id, mag.title)}
-                          disabled={submitting}
-                        >
-                          <span className="material-symbols-outlined">delete</span>
-                        </button>
+                        <div className="admin-list-item__actions">
+                          <button
+                            className="btn btn-ghost btn-sm"
+                            onClick={() => handleEditMagazine(mag)}
+                            title="Edit"
+                            disabled={submitting}
+                          >
+                            <span className="material-symbols-outlined">edit</span>
+                          </button>
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDeleteMagazine(mag.id, mag.title)}
+                            disabled={submitting}
+                          >
+                            <span className="material-symbols-outlined">delete</span>
+                          </button>
+                        </div>
                       </div>
                     ))}
                   </div>

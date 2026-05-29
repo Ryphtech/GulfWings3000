@@ -39,7 +39,7 @@ export default function Footer() {
             <ul className="footer__list">
               <li><Link to="/magazines">Latest Edition</Link></li>
               <li><Link to="/events">Upcoming Events</Link></li>
-              <li><Link to="/admin">Admin Console</Link></li>
+
             </ul>
           </div>
 
@@ -70,7 +70,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="footer__bottom">
-          <p>&copy; {year} GulfWings3000. All rights reserved.</p>
+          <p>&copy; {year} <Link to="/admin" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>GulfWings3000</Link>. All rights reserved.</p>
           <p className="footer__credit">Premium Finance Magazine Platform</p>
         </div>
       </div>

@@ -56,9 +56,7 @@ export default function Navbar() {
 
           {/* Admin + Hamburger */}
           <div className="navbar__actions">
-            <Link to="/admin" className="navbar__admin-btn" id="nav-admin" title="Admin Console">
-              <span className="material-symbols-outlined">settings</span>
-            </Link>
+
             <button
               className={`navbar__hamburger ${menuOpen ? 'navbar__hamburger--open' : ''}`}
               onClick={() => setMenuOpen(!menuOpen)}
@@ -98,17 +96,7 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-          <li>
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                `navbar__drawer-link ${isActive ? 'navbar__drawer-link--active' : ''}`
-              }
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>settings</span>
-              Admin Console
-            </NavLink>
-          </li>
+
         </ul>
       </aside>
     </>
